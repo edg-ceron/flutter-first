@@ -1,215 +1,142 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Vista());
+void main() => runApp(Controles());
 
 
-class Vista extends StatelessWidget{
+class Controles extends StatefulWidget{
   @override
+  State<StatefulWidget> createState() {
+    return Estado();
+  }
+}
+
+class Estado extends State{
+  double precio = 0, iva = 0, precioTotal = 0, satisfaccionCliente = 0;
+  bool tienesMembresia = false, palomitas = false, cubetaPalomera = false;
+  String pelicula = "";
+  @override
+  // TODO: implement widget
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.blue),
-      home: 
-        Scaffold(
-          appBar:
-            AppBar(
-              title: Text('Telegram')
-            ),
-          body:
-            ListView(
-              children: <Widget>[
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/nasa.png', width: 100),
-                    title: Text('Nasa'),
-                    subtitle: Text('Necesito tu codigo'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Icon(Icons.done),
-                        Text('21:30')
-                      ],
-                    ),
-                    isThreeLine: true,
-
-                  )  
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Texfield'),
+        ),
+        body:
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget> [
+                TextField(
+                onChanged: (event) {
+                  print('=>' + event);
+                  setState(() {
+                    precio = double.parse(event);
+                    iva = precio*0.16;
+                    precioTotal = precio*1.16;
+                  });
+                },
+                decoration: InputDecoration(
+                  icon: Icon(Icons.accessibility),
+                  labelText: 'Nombre',
+                  hintText: 'Escribe tu nombre',
+                  helperText: 'No escribas en mayuculas',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                  )
                 ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/bill.jpeg', width: 100),
-                    title: Text('Bill Gates'),
-                    subtitle: Text('Como te encuentras'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Icon(Icons.done),
-                        Text('21:25')
-                      ],
-                    ),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/elonk.jpeg', width: 100),
-                    title: Text('Elon Musk'),
-                    subtitle: Text('Tienes tiempo ?'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Icon(Icons.done),
-                        Text('21:22')
-                      ],
-                    ),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/tim.jpeg', width: 100),
-                    title: Text('Tim Cook'),
-                    subtitle: Text('Te quiero como CEO'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Icon(Icons.done),
-                        Text('21:15')
-                      ],
-                    ),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/amazon-1.jpg', width: 100),
-                    title: Text('Amazon'),
-                    subtitle: Text('Necesitamos una nueva app, te animas ?'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Icon(Icons.done),
-                        Text('21:10')
-                      ],
-                    ),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/platzi.png', width: 100),
-                    title: Text('Platzi'),
-                    subtitle: Text('Quieres dar un curso ?'),
-                    trailing: Column(
-                      children: <Widget>[
-                        Icon(Icons.done),
-                        Text('21:02')
-                      ],
-                    ),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/platzi.png', width: 100),
-                    title: Text('Platzi'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Image.asset('assets/images/test.jpg', width: 100),
-                    title: Text('Hola'),
-                    subtitle: Text('Subtitulo de un list que a su vez contiene cards y tambien list tile' 'Posdata tiene que asfafasfasfasfss'),
-                    trailing: Icon(Icons.more_vert),
-                    isThreeLine: true,
-
-                  )  
-                ),
-              ],
-            )
+              ),
+              Text('Precio: $precio'),
+              Text('IVA: $iva'),
+              Text('Precio total: $precioTotal'),
+              Checkbox(
+                value: tienesMembresia,
+                onChanged: (event) {
+                  print(event);
+                  setState(() {
+                    tienesMembresia= event;
+                  });
+                },
+              ),
+              Text('Tienes membresia $tienesMembresia'),
+              Switch(
+                value: palomitas,
+                onChanged: (event) {
+                  setState(() {
+                    palomitas = event;
+                  });
+                }
+              ),
+              Text('¿ Quires palomitas ? $palomitas'),
+              SwitchListTile(
+                value: cubetaPalomera,
+                title: Text('¿ Quieres cubeta palomera ? '),
+                subtitle: Text(' Cubeta edicion del bromas '),
+                secondary: Icon(Icons.filter),
+                onChanged: (event) {
+                  setState(() {
+                    cubetaPalomera = event;
+                  });
+                }
+              ),
+              Row(
+                children: <Widget>[
+                  Radio(
+                    value: 'Toy Story 4',
+                    groupValue: pelicula,
+                    onChanged: (event) {
+                      setState(() {
+                        pelicula = event;
+                      });
+                    },
+                  ),
+                  Text('Toy Story 4')
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Radio(
+                    value: 'El bromas',
+                    groupValue: pelicula,
+                    onChanged: (event) {
+                      setState(() {
+                        pelicula = event;
+                      });
+                    },
+                  ),
+                  Text('El bromas')
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Radio(
+                    value: 'Proyecto Geminis',
+                    groupValue: pelicula,
+                    onChanged: (event) {
+                      setState(() {
+                        pelicula = event;
+                      });
+                    },
+                  ),
+                  Text('Proyecto Geminis')
+                ],
+              ),
+              Slider(
+                value: satisfaccionCliente,
+                min: 0,
+                max: 10,
+                divisions: 10,
+                label: 'Calificacion $satisfaccionCliente',
+                onChanged: (event) {
+                  setState(() {
+                    satisfaccionCliente = event;
+                  });
+                },
+              )
+            ]
+          )
         )
+      )
     );
   }
 }
