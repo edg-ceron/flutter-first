@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:datetime_picker_formfield/time_picker_formfield.dart';
 
 void main() => runApp(Controles());
 
@@ -11,9 +14,9 @@ class Controles extends StatefulWidget{
 }
 
 class Estado extends State{
-  double precio = 0, iva = 0, precioTotal = 0, satisfaccionCliente = 0;
-  bool tienesMembresia = false, palomitas = false, cubetaPalomera = false;
-  String pelicula = "";
+  double costo1 = 40, costo2 = 10, costoTotal = 0;
+  int hora1 = 0, hora2 = 0;
+
   @override
   // TODO: implement widget
   Widget build(BuildContext context) {
@@ -28,111 +31,100 @@ class Estado extends State{
             child: Column(
               children: <Widget> [
                 TextField(
+                  keyboardType: TextInputType.number,
+                  onChanged: (event) {
+                    setState(() {
+                      costo1 = double.parse(event);
+                    });
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Costo 1ra hora',
+                    helperText: 'Solo escribe numeros',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15)
+                    )
+                  ),
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
                 onChanged: (event) {
-                  print('=>' + event);
                   setState(() {
-                    precio = double.parse(event);
-                    iva = precio*0.16;
-                    precioTotal = precio*1.16;
+                    costo2 = double.parse(event);
                   });
                 },
                 decoration: InputDecoration(
-                  icon: Icon(Icons.accessibility),
-                  labelText: 'Nombre',
-                  hintText: 'Escribe tu nombre',
-                  helperText: 'No escribas en mayuculas',
+                  labelText: 'Costo x fracción',
+                  helperText: 'Solo escribe numeros',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15)
                   )
                 ),
               ),
-              Text('Precio: $precio'),
-              Text('IVA: $iva'),
-              Text('Precio total: $precioTotal'),
-              Checkbox(
-                value: tienesMembresia,
+              Text('Hora de Entrada'),
+              TextField(
+                keyboardType: TextInputType.number,
                 onChanged: (event) {
-                  print(event);
                   setState(() {
-                    tienesMembresia= event;
+                    hora1 = event as int;
                   });
                 },
+                decoration: InputDecoration(
+                  labelText: 'Hora',
+                  helperText: 'En formato 24 h',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                  )
+                ),
               ),
-              Text('Tienes membresia $tienesMembresia'),
-              Switch(
-                value: palomitas,
+              TextField(
+                keyboardType: TextInputType.number,
                 onChanged: (event) {
                   setState(() {
-                    palomitas = event;
-                  });
-                }
-              ),
-              Text('¿ Quires palomitas ? $palomitas'),
-              SwitchListTile(
-                value: cubetaPalomera,
-                title: Text('¿ Quieres cubeta palomera ? '),
-                subtitle: Text(' Cubeta edicion del bromas '),
-                secondary: Icon(Icons.filter),
-                onChanged: (event) {
-                  setState(() {
-                    cubetaPalomera = event;
-                  });
-                }
-              ),
-              Row(
-                children: <Widget>[
-                  Radio(
-                    value: 'Toy Story 4',
-                    groupValue: pelicula,
-                    onChanged: (event) {
-                      setState(() {
-                        pelicula = event;
-                      });
-                    },
-                  ),
-                  Text('Toy Story 4')
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Radio(
-                    value: 'El bromas',
-                    groupValue: pelicula,
-                    onChanged: (event) {
-                      setState(() {
-                        pelicula = event;
-                      });
-                    },
-                  ),
-                  Text('El bromas')
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Radio(
-                    value: 'Proyecto Geminis',
-                    groupValue: pelicula,
-                    onChanged: (event) {
-                      setState(() {
-                        pelicula = event;
-                      });
-                    },
-                  ),
-                  Text('Proyecto Geminis')
-                ],
-              ),
-              Slider(
-                value: satisfaccionCliente,
-                min: 0,
-                max: 10,
-                divisions: 10,
-                label: 'Calificacion $satisfaccionCliente',
-                onChanged: (event) {
-                  setState(() {
-                    satisfaccionCliente = event;
+                    hora1 = event as int;
                   });
                 },
-              )
+                decoration: InputDecoration(
+                  labelText: 'Minutos',
+                  helperText: 'En formato 24 h',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                  )
+                ),
+              ),
+              Text('Hora de salida'),
+              TextField(
+                keyboardType: TextInputType.number,
+                onChanged: (event) {
+                  setState(() {
+                    hora2 = event as int;
+                    // costoTotal 
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Hora',
+                  helperText: 'Solo numeros',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                  )
+                ),
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                onChanged: (event) {
+                  setState(() {
+                    hora2 = event as int;
+                    // costoTotal 
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Minutos',
+                  helperText: 'Solo numeros',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                  )
+                ),
+              ),
+              Text('Pagar: $costoTotal')
             ]
           )
         )
