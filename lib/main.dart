@@ -1,142 +1,126 @@
-import 'package:flutter/material.dart';
-
-void main() => runApp(Controles());
-
-
-class Controles extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() {
-    return Estado();
-  }
-}
-
-class Estado extends State{
-  double precio = 0, iva = 0, precioTotal = 0, satisfaccionCliente = 0;
-  bool tienesMembresia = false, palomitas = false, cubetaPalomera = false;
-  String pelicula = "";
-  @override
-  // TODO: implement widget
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Texfield'),
-        ),
-        body:
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: <Widget> [
-                TextField(
-                onChanged: (event) {
-                  print('=>' + event);
-                  setState(() {
-                    precio = double.parse(event);
-                    iva = precio*0.16;
-                    precioTotal = precio*1.16;
-                  });
-                },
-                decoration: InputDecoration(
-                  icon: Icon(Icons.accessibility),
-                  labelText: 'Nombre',
-                  hintText: 'Escribe tu nombre',
-                  helperText: 'No escribas en mayuculas',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
-                  )
-                ),
-              ),
-              Text('Precio: $precio'),
-              Text('IVA: $iva'),
-              Text('Precio total: $precioTotal'),
-              Checkbox(
-                value: tienesMembresia,
-                onChanged: (event) {
-                  print(event);
-                  setState(() {
-                    tienesMembresia= event;
-                  });
-                },
-              ),
-              Text('Tienes membresia $tienesMembresia'),
-              Switch(
-                value: palomitas,
-                onChanged: (event) {
-                  setState(() {
-                    palomitas = event;
-                  });
-                }
-              ),
-              Text('¿ Quires palomitas ? $palomitas'),
-              SwitchListTile(
-                value: cubetaPalomera,
-                title: Text('¿ Quieres cubeta palomera ? '),
-                subtitle: Text(' Cubeta edicion del bromas '),
-                secondary: Icon(Icons.filter),
-                onChanged: (event) {
-                  setState(() {
-                    cubetaPalomera = event;
-                  });
-                }
-              ),
-              Row(
-                children: <Widget>[
-                  Radio(
-                    value: 'Toy Story 4',
-                    groupValue: pelicula,
-                    onChanged: (event) {
-                      setState(() {
-                        pelicula = event;
-                      });
-                    },
-                  ),
-                  Text('Toy Story 4')
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Radio(
-                    value: 'El bromas',
-                    groupValue: pelicula,
-                    onChanged: (event) {
-                      setState(() {
-                        pelicula = event;
-                      });
-                    },
-                  ),
-                  Text('El bromas')
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Radio(
-                    value: 'Proyecto Geminis',
-                    groupValue: pelicula,
-                    onChanged: (event) {
-                      setState(() {
-                        pelicula = event;
-                      });
-                    },
-                  ),
-                  Text('Proyecto Geminis')
-                ],
-              ),
-              Slider(
-                value: satisfaccionCliente,
-                min: 0,
-                max: 10,
-                divisions: 10,
-                label: 'Calificacion $satisfaccionCliente',
-                onChanged: (event) {
-                  setState(() {
-                    satisfaccionCliente = event;
-                  });
-                },
-              )
+import 'package:flutter/material.dart'; 
+ 
+ 
+main() => runApp(Controles()); 
+ 
+class Controles extends StatefulWidget{ 
+  @override 
+  State<StatefulWidget> createState() { 
+    return Estado(); 
+  } 
+ 
+} 
+ 
+class Estado extends State{ 
+ 
+  String gestos='Gestos'; 
+ 
+  @override 
+  Widget build(BuildContext context) { 
+    return MaterialApp( 
+      debugShowCheckedModeBanner: false, 
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold( 
+        appBar: AppBar( 
+          backgroundColor: Color.fromARGB(255, 7, 94, 84), 
+          // leading: IconButton( 
+          //   icon: Icon(Icons.arrow_back_ios), 
+          //   onPressed: (){ 
+          //     print('te regresaste'); 
+          //   }, 
+          // ), 
+          title: Text('Whatsapp'), 
+          actions: <Widget>[
+            IconButton (
+              icon: Icon(Icons.search),
+              onPressed: () {
+                print('Seleccionaste el menu');
+              }
+            ),
+            IconButton (
+              icon: Icon(Icons.send),
+              onPressed: () {
+                print('Seleccionaste el menu');
+              }
+            )
+          ],
+          bottom: TabBar(
+            tabs: [
+              // Tab(child: Icon(Icons.camera_alt)),
+              Tab(child: Text('Chats'),),
+              Tab(child: Text('Estados'),),
+              Tab(child: Text('Llamadas'),)
             ]
-          )
-        )
-      )
-    );
-  }
+          ),
+        ), 
+        body:  
+          TabBarView(
+            children: [
+              
+              Center(child: Text('Mensajes escritos') ),
+              Center(child: Text('Estados') ),
+              Center(child: Text('Para llamar a contactos que tiene WhatsApp') ),
+            ],
+          ),
+          drawer: Drawer(
+            elevation: 16.0,
+            child: ListView(
+              children: <Widget>[
+                DrawerHeader(
+                  child: Text('Menú'),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 7, 94, 84)
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.mail),
+                  title: Text('Bandeja de entrada'),
+                  onTap: () {
+                    print('Abriendo correos');
+                  },
+                ),
+                Divider(),
+                  ListTile(
+                    leading: Icon(Icons.cancel),
+                    title: Text('Correo no deseados'),
+                    onTap: () {
+                      print('Abriendo correos');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.cast_connected),
+                    title: Text('Correo no deseados'),
+                    onTap: () {
+                      print('Abriendo Correo no deseados');
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.delete),
+                    title: Text('Correo eliminados'),
+                    onTap: () {
+                      print('Abriendo Correo eliminados');
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.close),
+                    title: Text('Cerrar sesión'),
+                    onTap: () {
+                      print('Abriendo errar sesión');
+                    },
+                  )
+              ],
+            ),
+          ),
+         floatingActionButton: FloatingActionButton(
+           child: Icon(Icons.message),
+           backgroundColor: Color.fromARGB(255,7,94,84),
+         ),
+       )
+      ) 
+    ); 
+  } 
+ 
 }
