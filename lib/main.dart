@@ -1,134 +1,126 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:datetime_picker_formfield/time_picker_formfield.dart';
-
-void main() => runApp(Controles());
-
-
-class Controles extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() {
-    return Estado();
-  }
-}
-
-class Estado extends State{
-  double costo1 = 40, costo2 = 10, costoTotal = 0;
-  int hora1 = 0, hora2 = 0;
-
-  @override
-  // TODO: implement widget
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Texfield'),
-        ),
-        body:
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: <Widget> [
-                TextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (event) {
-                    setState(() {
-                      costo1 = double.parse(event);
-                    });
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Costo 1ra hora',
-                    helperText: 'Solo escribe numeros',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15)
-                    )
-                  ),
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                onChanged: (event) {
-                  setState(() {
-                    costo2 = double.parse(event);
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Costo x fracción',
-                  helperText: 'Solo escribe numeros',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
-                  )
-                ),
-              ),
-              Text('Hora de Entrada'),
-              TextField(
-                keyboardType: TextInputType.number,
-                onChanged: (event) {
-                  setState(() {
-                    hora1 = event as int;
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Hora',
-                  helperText: 'En formato 24 h',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
-                  )
-                ),
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                onChanged: (event) {
-                  setState(() {
-                    hora1 = event as int;
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Minutos',
-                  helperText: 'En formato 24 h',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
-                  )
-                ),
-              ),
-              Text('Hora de salida'),
-              TextField(
-                keyboardType: TextInputType.number,
-                onChanged: (event) {
-                  setState(() {
-                    hora2 = event as int;
-                    // costoTotal 
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Hora',
-                  helperText: 'Solo numeros',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
-                  )
-                ),
-              ),
-              TextField(
-                keyboardType: TextInputType.number,
-                onChanged: (event) {
-                  setState(() {
-                    hora2 = event as int;
-                    // costoTotal 
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Minutos',
-                  helperText: 'Solo numeros',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
-                  )
-                ),
-              ),
-              Text('Pagar: $costoTotal')
+import 'package:flutter/material.dart'; 
+ 
+ 
+main() => runApp(Controles()); 
+ 
+class Controles extends StatefulWidget{ 
+  @override 
+  State<StatefulWidget> createState() { 
+    return Estado(); 
+  } 
+ 
+} 
+ 
+class Estado extends State{ 
+ 
+  String gestos='Gestos'; 
+ 
+  @override 
+  Widget build(BuildContext context) { 
+    return MaterialApp( 
+      debugShowCheckedModeBanner: false, 
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold( 
+        appBar: AppBar( 
+          backgroundColor: Color.fromARGB(255, 7, 94, 84), 
+          // leading: IconButton( 
+          //   icon: Icon(Icons.arrow_back_ios), 
+          //   onPressed: (){ 
+          //     print('te regresaste'); 
+          //   }, 
+          // ), 
+          title: Text('Whatsapp'), 
+          actions: <Widget>[
+            IconButton (
+              icon: Icon(Icons.search),
+              onPressed: () {
+                print('Seleccionaste el menu');
+              }
+            ),
+            IconButton (
+              icon: Icon(Icons.send),
+              onPressed: () {
+                print('Seleccionaste el menu');
+              }
+            )
+          ],
+          bottom: TabBar(
+            tabs: [
+              // Tab(child: Icon(Icons.camera_alt)),
+              Tab(child: Text('Chats'),),
+              Tab(child: Text('Estados'),),
+              Tab(child: Text('Llamadas'),)
             ]
-          )
-        )
-      )
-    );
-  }
+          ),
+        ), 
+        body:  
+          TabBarView(
+            children: [
+              
+              Center(child: Text('Mensajes escritos') ),
+              Center(child: Text('Estados') ),
+              Center(child: Text('Para llamar a contactos que tiene WhatsApp') ),
+            ],
+          ),
+          drawer: Drawer(
+            elevation: 16.0,
+            child: ListView(
+              children: <Widget>[
+                DrawerHeader(
+                  child: Text('Menú'),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 7, 94, 84)
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(Icons.mail),
+                  title: Text('Bandeja de entrada'),
+                  onTap: () {
+                    print('Abriendo correos');
+                  },
+                ),
+                Divider(),
+                  ListTile(
+                    leading: Icon(Icons.cancel),
+                    title: Text('Correo no deseados'),
+                    onTap: () {
+                      print('Abriendo correos');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.cast_connected),
+                    title: Text('Correo no deseados'),
+                    onTap: () {
+                      print('Abriendo Correo no deseados');
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.delete),
+                    title: Text('Correo eliminados'),
+                    onTap: () {
+                      print('Abriendo Correo eliminados');
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.close),
+                    title: Text('Cerrar sesión'),
+                    onTap: () {
+                      print('Abriendo errar sesión');
+                    },
+                  )
+              ],
+            ),
+          ),
+         floatingActionButton: FloatingActionButton(
+           child: Icon(Icons.message),
+           backgroundColor: Color.fromARGB(255,7,94,84),
+         ),
+       )
+      ) 
+    ); 
+  } 
+ 
 }
