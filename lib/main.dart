@@ -58,7 +58,34 @@ class Estado extends State{
           TabBarView(
             children: [
               
-              Center(child: Text('Mensajes escritos') ),
+              Column(
+                children: <Widget>[
+                  Text('Hola'),
+                  Text('Que tal'),
+                  Text('Respondeme!!!'),
+                  Text('Lo siento estoy ocupado :D'),
+
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Nuevo mensaje'
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Enviar mensaje',
+                      style: TextStyle(fontSize: 20)
+                    ),
+                  ),
+                  RaisedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Eliminar',
+                      style: TextStyle(fontSize: 20)
+                    ),
+                  )
+                ],
+              ),
               Center(child: Text('Estados') ),
               Center(child: Text('Para llamar a contactos que tiene WhatsApp') ),
             ],
